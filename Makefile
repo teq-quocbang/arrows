@@ -27,6 +27,7 @@ gen-mock:
 	@mockery --inpackage --with-expecter --name=Repository --dir=./repository/producer
 	@mockery --inpackage --with-expecter --name=Repository --dir=./repository/storage
 	@mockery --inpackage --with-expecter --name=Repository --dir=./repository/checkout
+	@mockery --inpackage --with-expecter --name=Repository --dir=./repository/post
 	
 	@mockery --inpackage --with-expecter --name=ICache --dir=./cache
 

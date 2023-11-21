@@ -6,6 +6,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 	"github.com/teq-quocbang/store/config"
+	"github.com/teq-quocbang/store/repository/post"
 )
 
 type TestSuite struct {
@@ -13,7 +14,7 @@ type TestSuite struct {
 
 	ctx context.Context
 
-	useCase func() UseCase
+	useCase func(*post.MockRepository) UseCase
 }
 
 func (suite *TestSuite) SetupTest() {
@@ -27,8 +28,9 @@ func TestUseCaseAuth(t *testing.T) {
 	suite.Run(t, &TestSuite{})
 }
 
-func NewTestUseCase() UseCase {
+func NewTestUseCase(post *post.MockRepository) UseCase {
 	return UseCase{
+		Post:   post,
 		Config: config.GetConfig(),
 	}
 }
