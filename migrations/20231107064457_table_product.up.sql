@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS
     CONSTRAINT `product_ibfk_1` FOREIGN KEY (`producer_id`) REFERENCES `producer` (`id`),
     CONSTRAINT `product_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `account` (`id`),
     CONSTRAINT `product_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `account` (`id`)
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci

@@ -12,4 +12,4 @@ CREATE TABLE IF NOT EXISTS
     KEY `producer_ibfk_2` (`updated_by`),
     CONSTRAINT `producer_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `account` (`id`),
     CONSTRAINT `producer_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `account` (`id`)
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci
