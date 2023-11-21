@@ -8,6 +8,7 @@ import (
 	"github.com/teq-quocbang/store/repository/account"
 	"github.com/teq-quocbang/store/repository/checkout"
 	"github.com/teq-quocbang/store/repository/example"
+	"github.com/teq-quocbang/store/repository/post"
 	"github.com/teq-quocbang/store/repository/producer"
 	"github.com/teq-quocbang/store/repository/product"
 	"github.com/teq-quocbang/store/repository/storage"
@@ -20,6 +21,7 @@ type Repository struct {
 	Producer producer.Repository
 	Storage  storage.Repository
 	Checkout checkout.Repository
+	Post     post.Repository
 }
 
 func New(getClient func(ctx context.Context) *gorm.DB) *Repository {
@@ -30,5 +32,6 @@ func New(getClient func(ctx context.Context) *gorm.DB) *Repository {
 		Producer: producer.NewPG(getClient),
 		Storage:  storage.NewPG(getClient),
 		Checkout: checkout.NewPG(getClient),
+		Post:     post.NewPG(getClient),
 	}
 }
