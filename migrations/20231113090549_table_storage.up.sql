@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS
     UNIQUE KEY `uidx_locat_product_id` (`locat`, `product_id`),
     KEY `storage_ibfk_1` (`product_id`),
     CONSTRAINT `storage_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci
