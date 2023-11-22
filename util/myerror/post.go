@@ -66,3 +66,13 @@ func ErrPostInvalidParam(param string) teqerror.TeqError {
 		IsSentry:  false,
 	}
 }
+
+func ErrPostForbidden(param string) teqerror.TeqError {
+	return teqerror.TeqError{
+		Raw:       nil,
+		HTTPCode:  http.StatusForbidden,
+		ErrorCode: "70006",
+		Message:   fmt.Sprintf("Denied to access the post: `%s`.", param),
+		IsSentry:  false,
+	}
+}
