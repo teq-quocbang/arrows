@@ -13,4 +13,5 @@ type IUseCase interface {
 	Create(context.Context, *payload.CreatePostRequest) (*presenter.PostResponseWrapper, error)
 	GetByID(context.Context, uuid.UUID) (*presenter.PostResponseWrapper, error)
 	UpsertEmoji(context.Context, *payload.UpsertEmojiRequest) (*presenter.PostResponseWrapper, error)
+	Update(context.Context, *payload.UpdatePostRequest) (*presenter.PostResponseWrapper, error)
 }
