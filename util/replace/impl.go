@@ -5,8 +5,10 @@ import (
 	"reflect"
 )
 
-// Replace is replace value of field x.field -> y.field if that two fields is same json tag
+// Replace is replace value of t1 -> t2 if that two fields is same json tag
 // and same type
+// rules:
+//   - t1 much !IsZero value
 //
 // *note: generics type not support for pointer
 func Replace[T1 any, T2 any](t1 T1, t2 T2) (T2, error) {
