@@ -35,7 +35,7 @@ func TestReactedThePost(t *testing.T) {
 
 		// Assert
 		assertion.True(ok)
-		assertion.Equal(1, len(reply))
+		assertion.Equal(emoji(testEmoji), reply)
 	}
 }
 

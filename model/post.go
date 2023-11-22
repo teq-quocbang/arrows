@@ -43,15 +43,13 @@ func (Post) TableName() string {
 	return "post"
 }
 
-func (p *Post) ReactedThePost(userID uuid.UUID) (React, bool) {
-	react := React{}
+func (p *Post) ReactedThePost(userID uuid.UUID) (emoji, bool) {
 	for emoji, userIDs := range p.Information.Reacts {
 		if slices.Contains[[]uuid.UUID](userIDs, userID) {
-			react[emoji] = append(react[emoji], userID)
-			return react, true
+			return emoji, true
 		}
 	}
-	return react, false
+	return "", false
 }
 
 func (p *Post) BeforeCreate(tx *gorm.DB) error {
