@@ -4,11 +4,11 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
-	"github.com/teq-quocbang/store/util/contexts"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
+	"github.com/teq-quocbang/arrows/util/contexts"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (u *UseCase) AddToCard(ctx context.Context, req *payload.AddToCartRequest) (*presenter.CartResponseWrapper, error) {

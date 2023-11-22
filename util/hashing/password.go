@@ -3,7 +3,7 @@ package hashing
 import (
 	"errors"
 
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/util/myerror"
 
 	"golang.org/x/crypto/bcrypt"
 )

@@ -3,7 +3,7 @@ package payload
 import (
 	"strings"
 
-	"github.com/teq-quocbang/store/codetype"
+	"github.com/teq-quocbang/arrows/codetype"
 )
 
 type CreateExampleRequest struct {

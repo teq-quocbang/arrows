@@ -1,6 +1,6 @@
 package presenter
 
-import "github.com/teq-quocbang/store/model"
+import "github.com/teq-quocbang/arrows/model"
 
 type ExampleResponseWrapper struct {
 	Example *model.Example `json:"example"`

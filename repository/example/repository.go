@@ -3,8 +3,8 @@ package example
 import (
 	"context"
 
-	"github.com/teq-quocbang/store/codetype"
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/codetype"
+	"github.com/teq-quocbang/arrows/model"
 )
 
 type Repository interface {

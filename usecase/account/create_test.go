@@ -5,12 +5,12 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
-	"github.com/teq-quocbang/store/repository/account"
-	"github.com/teq-quocbang/store/util/hashing"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
+	"github.com/teq-quocbang/arrows/repository/account"
+	"github.com/teq-quocbang/arrows/util/hashing"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (s *TestSuite) TestSignUp() {

@@ -6,9 +6,9 @@ import (
 
 	"git.teqnological.asia/teq-go/teq-pkg/teqerror"
 
-	"github.com/teq-quocbang/store/proto"
-	"github.com/teq-quocbang/store/usecase/grpc"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/proto"
+	"github.com/teq-quocbang/arrows/usecase/grpc"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (a *TeqService) GetExampleByID(ctx context.Context, req *proto.GetByIDRequest) (*proto.ExampleResponse, error) {

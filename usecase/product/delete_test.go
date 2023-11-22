@@ -3,9 +3,9 @@ package product
 import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/mock"
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/repository/product"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/repository/product"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (s *TestSuite) TestDelete() {

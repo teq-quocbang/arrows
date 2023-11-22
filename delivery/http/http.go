@@ -9,17 +9,18 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/delivery/http/account"
-	"github.com/teq-quocbang/store/delivery/http/auth"
-	"github.com/teq-quocbang/store/delivery/http/checkout"
-	"github.com/teq-quocbang/store/delivery/http/example"
-	"github.com/teq-quocbang/store/delivery/http/healthcheck"
-	"github.com/teq-quocbang/store/delivery/http/producer"
-	"github.com/teq-quocbang/store/delivery/http/product"
-	"github.com/teq-quocbang/store/delivery/http/statistics"
-	"github.com/teq-quocbang/store/delivery/http/storage"
-	"github.com/teq-quocbang/store/usecase"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/delivery/http/account"
+	"github.com/teq-quocbang/arrows/delivery/http/auth"
+	"github.com/teq-quocbang/arrows/delivery/http/checkout"
+	"github.com/teq-quocbang/arrows/delivery/http/example"
+	"github.com/teq-quocbang/arrows/delivery/http/healthcheck"
+	"github.com/teq-quocbang/arrows/delivery/http/post"
+	"github.com/teq-quocbang/arrows/delivery/http/producer"
+	"github.com/teq-quocbang/arrows/delivery/http/product"
+	"github.com/teq-quocbang/arrows/delivery/http/statistics"
+	"github.com/teq-quocbang/arrows/delivery/http/storage"
+	"github.com/teq-quocbang/arrows/usecase"
 )
 
 func NewHTTPHandler(useCase *usecase.UseCase) *echo.Echo {
@@ -69,6 +70,9 @@ func NewHTTPHandler(useCase *usecase.UseCase) *echo.Echo {
 	storage.Init(api.Group("/storage", auth.Auth), useCase)
 	checkout.Init(api.Group("/checkout", auth.Auth), useCase)
 	statistics.Init(api.Group("/statistics", auth.Auth), useCase)
+
+	// arrows
+	post.Init(api.Group("/post", auth.Auth), useCase)
 
 	return e
 }

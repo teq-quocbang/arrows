@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (u *UseCase) Delete(ctx context.Context, id string) error {

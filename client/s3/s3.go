@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 
-	"github.com/teq-quocbang/store/config"
+	"github.com/teq-quocbang/arrows/config"
 )
 
 var (

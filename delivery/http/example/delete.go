@@ -7,7 +7,7 @@ import (
 	"git.teqnological.asia/teq-go/teq-pkg/teqerror"
 	"github.com/labstack/echo/v4"
 
-	"github.com/teq-quocbang/store/payload"
+	"github.com/teq-quocbang/arrows/payload"
 )
 
 // Delete example by id

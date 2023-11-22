@@ -13,9 +13,9 @@ import (
 
 	"git.teqnological.asia/teq-go/teq-pkg/teqlogger"
 	_ "github.com/golang-migrate/migrate/v4/source/file" // Register using Golang migrate.
-	"github.com/teq-quocbang/store/cache"
-	"github.com/teq-quocbang/store/cache/connection"
-	"github.com/teq-quocbang/store/migrations"
+	"github.com/teq-quocbang/arrows/cache"
+	"github.com/teq-quocbang/arrows/cache/connection"
+	"github.com/teq-quocbang/arrows/migrations"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -28,6 +28,7 @@ var tables = []string{
 	"product",
 	"producer",
 	"storage",
+	"post",
 }
 
 type Database struct {

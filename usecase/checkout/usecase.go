@@ -1,12 +1,12 @@
 package checkout
 
 import (
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/repository"
-	"github.com/teq-quocbang/store/repository/checkout"
-	"github.com/teq-quocbang/store/repository/product"
-	"github.com/teq-quocbang/store/repository/storage"
-	mySES "github.com/teq-quocbang/store/util/ses"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/repository"
+	"github.com/teq-quocbang/arrows/repository/checkout"
+	"github.com/teq-quocbang/arrows/repository/product"
+	"github.com/teq-quocbang/arrows/repository/storage"
+	mySES "github.com/teq-quocbang/arrows/util/ses"
 )
 
 type UseCase struct {

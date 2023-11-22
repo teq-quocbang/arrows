@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/model"
 )
 
 type IUseCase interface {

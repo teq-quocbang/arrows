@@ -2,7 +2,7 @@ package presenter
 
 import (
 	"github.com/shopspring/decimal"
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/model"
 )
 
 type CartResponseWrapper struct {

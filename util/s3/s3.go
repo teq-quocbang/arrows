@@ -5,7 +5,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 
-	myS3 "github.com/teq-quocbang/store/client/s3"
+	myS3 "github.com/teq-quocbang/arrows/client/s3"
 )
 
 type S3 struct {

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = "github.com/teq-quocbang/arrows/proto";
+
+enum Privacy {
+  Unspecified = 0;
+  Public    = 1;
+  Friends   = 2;
+  OnlyMe    = 3;
+}

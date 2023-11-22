@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/model"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

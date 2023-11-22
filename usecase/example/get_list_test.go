@@ -5,10 +5,10 @@ import (
 	"git.teqnological.asia/teq-go/teq-pkg/teqerror"
 	"github.com/pkg/errors"
 
-	"github.com/teq-quocbang/store/codetype"
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/codetype"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (suite *TestSuite) TestGetList_Success() {

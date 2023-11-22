@@ -2,7 +2,7 @@ package storage
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/teq-quocbang/store/usecase"
+	"github.com/teq-quocbang/arrows/usecase"
 )
 
 type Route struct {

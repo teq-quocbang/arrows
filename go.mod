@@ -1,4 +1,4 @@
-module github.com/teq-quocbang/store
+module github.com/teq-quocbang/arrows
 
 go 1.18
 

@@ -5,9 +5,9 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/stretchr/testify/mock"
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/repository/product"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/repository/product"
 )
 
 func (s *TestSuite) TestExport() {

@@ -7,8 +7,8 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
-	"github.com/teq-quocbang/store/codetype"
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/codetype"
+	"github.com/teq-quocbang/arrows/model"
 )
 
 func NewPG(getDB func(ctx context.Context) *gorm.DB) Repository {

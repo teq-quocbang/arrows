@@ -3,8 +3,8 @@ package statistics
 import (
 	"context"
 
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
 )
 
 type IUseCase interface {
