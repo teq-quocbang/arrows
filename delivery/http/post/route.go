@@ -14,4 +14,5 @@ func Init(group *echo.Group, useCase *usecase.UseCase) {
 
 	group.POST("", r.Create)
 	group.GET("/:id", r.GetByID)
+	group.PATCH("", r.UpsertEmoji)
 }

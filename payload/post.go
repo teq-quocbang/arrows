@@ -11,3 +11,13 @@ func (p *CreatePostRequest) Validate() error {
 	var validate = validator.New()
 	return validate.Struct(p)
 }
+
+type UpsertEmojiRequest struct {
+	PostID string `json:"post_id" validate:"required"`
+	Emoji  string `json:"emoji" validate:"required"`
+}
+
+func (p *UpsertEmojiRequest) Validate() error {
+	var validate = validator.New()
+	return validate.Struct(p)
+}

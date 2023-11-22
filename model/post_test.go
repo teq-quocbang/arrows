@@ -18,9 +18,9 @@ func TestReactedThePost(t *testing.T) {
 		// Arrange
 		react := React{}
 		for i := 0; i < 10; i++ {
-			react[emoji(gofakeit.Emoji())] = fakeUserIDs(20)
+			react[Emoji(gofakeit.Emoji())] = fakeUserIDs(20)
 		}
-		react[emoji(testEmoji)] = []uuid.UUID{testUser} // for testing purpose
+		react[Emoji(testEmoji)] = []uuid.UUID{testUser} // for testing purpose
 		post := Post{
 			ID:      uuid.New(),
 			Content: gofakeit.BookGenre(),
@@ -35,7 +35,7 @@ func TestReactedThePost(t *testing.T) {
 
 		// Assert
 		assertion.True(ok)
-		assertion.Equal(emoji(testEmoji), reply)
+		assertion.Equal(Emoji(testEmoji), reply)
 	}
 }
 

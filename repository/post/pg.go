@@ -2,6 +2,7 @@ package post
 
 import (
 	"context"
+	"encoding/json"
 	"reflect"
 
 	"github.com/google/uuid"
@@ -79,7 +80,11 @@ func (r *pgRepository) GetList(ctx context.Context, accountID uuid.UUID, order [
 }
 
 func (r *pgRepository) UpsertEmoji(ctx context.Context, postID uuid.UUID, react *model.React) error {
-	return r.getDB(ctx).Model(&model.Post{}).Where("id = ?", postID).Update("information", gorm.Expr("JSON_MERGE_PATCH(information, ?)", react)).Error
+	reactByte, err := json.Marshal(model.PostInfo{Reacts: *react})
+	if err != nil {
+		return err
+	}
+	return r.getDB(ctx).Model(&model.Post{}).Where("id = ?", postID).Update("information", gorm.Expr("JSON_MERGE_PATCH(information, ?)", reactByte)).Error
 }
 
 func (r *pgRepository) Delete(ctx context.Context, postID uuid.UUID) error {

@@ -11,10 +11,10 @@ import (
 	"gorm.io/gorm"
 )
 
-type emoji string
+type Emoji string
 
 // emoji: [slice user id]
-type React map[emoji][]uuid.UUID
+type React map[Emoji][]uuid.UUID
 
 type PostInfo struct {
 	CommentIDs []uuid.UUID `json:"comment_ids"`
@@ -43,7 +43,7 @@ func (Post) TableName() string {
 	return "post"
 }
 
-func (p *Post) ReactedThePost(userID uuid.UUID) (emoji, bool) {
+func (p *Post) ReactedThePost(userID uuid.UUID) (Emoji, bool) {
 	for emoji, userIDs := range p.Information.Reacts {
 		if slices.Contains[[]uuid.UUID](userIDs, userID) {
 			return emoji, true
@@ -55,4 +55,12 @@ func (p *Post) ReactedThePost(userID uuid.UUID) (emoji, bool) {
 func (p *Post) BeforeCreate(tx *gorm.DB) error {
 	p.ID = uuid.New()
 	return nil
+}
+
+func (r React) ClearNilReact() {
+	for e, userIDs := range r {
+		if len(userIDs) == 0 {
+			delete(r, e)
+		}
+	}
 }
