@@ -116,10 +116,10 @@ func (u *UseCase) Update(ctx context.Context, req *payload.UpdatePostRequest) (*
 		return nil, myerror.ErrPostForbidden("not owner")
 	}
 
-	post, err = replace.Replace(post, model.Post{
+	post, err = replace.Replace(model.Post{
 		Content:     req.Content,
 		PrivacyMode: proto.Privacy(req.PrivacyMode),
-	})
+	}, post)
 	if err != nil {
 		return nil, myerror.ErrPostUpdate(err)
 	}

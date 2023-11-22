@@ -15,6 +15,7 @@ import (
 	"github.com/teq-quocbang/arrows/delivery/http/auth"
 	"github.com/teq-quocbang/arrows/fixture/database"
 	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/proto"
 	"github.com/teq-quocbang/arrows/repository"
 	"github.com/teq-quocbang/arrows/usecase"
 	"github.com/teq-quocbang/arrows/util/token"
@@ -79,6 +80,73 @@ func setupUpsertEmoji(input *payload.UpsertEmojiRequest) (*httptest.ResponseReco
 	e := echo.New()
 	b, _ := json.Marshal(input)
 	req := httptest.NewRequest(http.MethodPatch, "/api/post", bytes.NewReader(b))
+	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	rec := httptest.NewRecorder()
+
+	c := e.NewContext(req, rec)
+
+	return rec, c
+}
+
+func TestUpdate(t *testing.T) {
+	assertion := assert.New(t)
+	db := database.InitDatabase()
+	defer db.TruncateTables()
+
+	repo := repository.New(db.GetClient)
+	r := Route{
+		UseCase: usecase.New(repo, nil),
+	}
+
+	accountID, postID, err := setUpDependencyData(db)
+	assertion.NoError(err)
+
+	userPrinciple := &token.JWTClaimCustom{
+		SessionID: uuid.New(),
+		User: token.UserInfo{
+			Username: gofakeit.Name(),
+			ID:       accountID,
+			Email:    gofakeit.Email(),
+		},
+	}
+	testOnlyMeMode := proto.Privacy_OnlyMe
+
+	// good case
+	{
+		// Arrange
+		req := &payload.UpdatePostRequest{
+			PostID:      postID.String(),
+			PrivacyMode: int32(testOnlyMeMode),
+		}
+		resp, ctx := setupUpdate(req)
+		ctx.Set(string(auth.UserPrincipleKey), userPrinciple)
+
+		// Act
+		err := r.Update(ctx)
+
+		// Assert
+		assertion.NoError(err)
+		assertion.Equal(200, resp.Code)
+	}
+
+	// good case
+	{
+		// Arrange
+		resp, ctx := setupUpdate(nil)
+		ctx.Set(string(auth.UserPrincipleKey), userPrinciple)
+
+		// Act
+		r.Update(ctx)
+
+		// Assert
+		assertion.Equal(400, resp.Code)
+	}
+}
+
+func setupUpdate(input *payload.UpdatePostRequest) (*httptest.ResponseRecorder, echo.Context) {
+	e := echo.New()
+	b, _ := json.Marshal(input)
+	req := httptest.NewRequest(http.MethodPut, "/api/post", bytes.NewReader(b))
 	req.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	rec := httptest.NewRecorder()
 
