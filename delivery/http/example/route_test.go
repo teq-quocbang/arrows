@@ -8,7 +8,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	"github.com/teq-quocbang/store/payload"
+	"github.com/teq-quocbang/arrows/payload"
 )
 
 func setUpTestGetByID(exampleID string) (*httptest.ResponseRecorder, echo.Context) {

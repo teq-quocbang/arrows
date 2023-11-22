@@ -6,7 +6,7 @@ import (
 	context "context"
 
 	mock "github.com/stretchr/testify/mock"
-	model "github.com/teq-quocbang/store/model"
+	model "github.com/teq-quocbang/arrows/model"
 
 	uuid "github.com/google/uuid"
 )

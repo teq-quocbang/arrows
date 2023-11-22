@@ -42,7 +42,7 @@ open-coverage:
 	@open coverage/index.html
 
 gci:
-	@gci write -s Standard -s Default -s "Prefix(github.com/teq-quocbang/store)" .
+	@gci write -s Standard -s Default -s "Prefix(github.com/teq-quocbang/arrows)" .
 
 lint:
 	@hash golangci-lint 2>/dev/null || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.48.0

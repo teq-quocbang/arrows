@@ -1,19 +1,19 @@
 package usecase
 
 import (
-	"github.com/teq-quocbang/store/cache"
-	"github.com/teq-quocbang/store/repository"
-	"github.com/teq-quocbang/store/usecase/account"
-	"github.com/teq-quocbang/store/usecase/checkout"
-	"github.com/teq-quocbang/store/usecase/example"
-	"github.com/teq-quocbang/store/usecase/grpc"
-	"github.com/teq-quocbang/store/usecase/post"
-	"github.com/teq-quocbang/store/usecase/producer"
-	"github.com/teq-quocbang/store/usecase/product"
-	"github.com/teq-quocbang/store/usecase/statistics"
-	"github.com/teq-quocbang/store/usecase/storage"
-	myS3 "github.com/teq-quocbang/store/util/s3"
-	mySES "github.com/teq-quocbang/store/util/ses"
+	"github.com/teq-quocbang/arrows/cache"
+	"github.com/teq-quocbang/arrows/repository"
+	"github.com/teq-quocbang/arrows/usecase/account"
+	"github.com/teq-quocbang/arrows/usecase/checkout"
+	"github.com/teq-quocbang/arrows/usecase/example"
+	"github.com/teq-quocbang/arrows/usecase/grpc"
+	"github.com/teq-quocbang/arrows/usecase/post"
+	"github.com/teq-quocbang/arrows/usecase/producer"
+	"github.com/teq-quocbang/arrows/usecase/product"
+	"github.com/teq-quocbang/arrows/usecase/statistics"
+	"github.com/teq-quocbang/arrows/usecase/storage"
+	myS3 "github.com/teq-quocbang/arrows/util/s3"
+	mySES "github.com/teq-quocbang/arrows/util/ses"
 )
 
 type UseCase struct {

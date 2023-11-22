@@ -7,7 +7,7 @@ import (
 	"git.teqnological.asia/teq-go/teq-pkg/teqlogger"
 	"git.teqnological.asia/teq-go/teq-pkg/teqsentry"
 	"github.com/redis/go-redis/v9"
-	"github.com/teq-quocbang/store/cache"
+	"github.com/teq-quocbang/arrows/cache"
 )
 
 type redisDB struct {

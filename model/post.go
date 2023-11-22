@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/proto"
+	"github.com/teq-quocbang/arrows/proto"
 	"gorm.io/gorm"
 )
 

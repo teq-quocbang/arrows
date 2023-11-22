@@ -6,7 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/ses"
 	"github.com/pkg/errors"
 
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 const CharSetUTF8 string = "UTF-8"

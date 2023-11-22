@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/model"
 )
 
 type Repository interface {

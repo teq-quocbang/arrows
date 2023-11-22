@@ -5,13 +5,13 @@ package post
 import (
 	context "context"
 
-	codetype "github.com/teq-quocbang/store/codetype"
+	codetype "github.com/teq-quocbang/arrows/codetype"
 
 	mock "github.com/stretchr/testify/mock"
 
-	model "github.com/teq-quocbang/store/model"
+	model "github.com/teq-quocbang/arrows/model"
 
-	proto "github.com/teq-quocbang/store/proto"
+	proto "github.com/teq-quocbang/arrows/proto"
 
 	uuid "github.com/google/uuid"
 )

@@ -10,9 +10,9 @@ import (
 	"git.teqnological.asia/teq-go/teq-pkg/teq"
 	"git.teqnological.asia/teq-go/teq-pkg/teqerror"
 	"github.com/labstack/echo/v4"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 // Create List Product With Import File

@@ -1,9 +1,9 @@
 package grpc
 
 import (
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/repository"
-	"github.com/teq-quocbang/store/repository/example"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/repository"
+	"github.com/teq-quocbang/arrows/repository/example"
 )
 
 type UseCase struct {

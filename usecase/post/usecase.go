@@ -1,10 +1,10 @@
 package post
 
 import (
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/repository"
-	"github.com/teq-quocbang/store/repository/post"
-	mySES "github.com/teq-quocbang/store/util/ses"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/repository"
+	"github.com/teq-quocbang/arrows/repository/post"
+	mySES "github.com/teq-quocbang/arrows/util/ses"
 )
 
 type UseCase struct {

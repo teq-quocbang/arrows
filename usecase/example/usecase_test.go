@@ -6,8 +6,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	exampleRepo "github.com/teq-quocbang/store/repository/example"
-	exampleUC "github.com/teq-quocbang/store/usecase/example"
+	exampleRepo "github.com/teq-quocbang/arrows/repository/example"
+	exampleUC "github.com/teq-quocbang/arrows/usecase/example"
 )
 
 type TestSuite struct {

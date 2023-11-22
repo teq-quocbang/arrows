@@ -5,9 +5,9 @@ import (
 
 	"git.teqnological.asia/teq-go/teq-pkg/teq"
 	"github.com/labstack/echo/v4"
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/util/myerror"
-	"github.com/teq-quocbang/store/util/token"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/util/myerror"
+	"github.com/teq-quocbang/arrows/util/token"
 )
 
 type key string

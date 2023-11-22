@@ -4,7 +4,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3"
 
-	"github.com/teq-quocbang/store/config"
+	"github.com/teq-quocbang/arrows/config"
 )
 
 func (s S3) Delete(key string) (*s3.DeleteObjectOutput, error) {

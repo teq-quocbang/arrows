@@ -10,7 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	uuid "github.com/satori/go.uuid"
 
-	"github.com/teq-quocbang/store/config"
+	"github.com/teq-quocbang/arrows/config"
 )
 
 type RootDirectory string

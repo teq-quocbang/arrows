@@ -5,13 +5,13 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/teq-quocbang/store/repository/account"
-	"github.com/teq-quocbang/store/repository/checkout"
-	"github.com/teq-quocbang/store/repository/example"
-	"github.com/teq-quocbang/store/repository/post"
-	"github.com/teq-quocbang/store/repository/producer"
-	"github.com/teq-quocbang/store/repository/product"
-	"github.com/teq-quocbang/store/repository/storage"
+	"github.com/teq-quocbang/arrows/repository/account"
+	"github.com/teq-quocbang/arrows/repository/checkout"
+	"github.com/teq-quocbang/arrows/repository/example"
+	"github.com/teq-quocbang/arrows/repository/post"
+	"github.com/teq-quocbang/arrows/repository/producer"
+	"github.com/teq-quocbang/arrows/repository/product"
+	"github.com/teq-quocbang/arrows/repository/storage"
 )
 
 type Repository struct {

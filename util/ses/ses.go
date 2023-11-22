@@ -4,7 +4,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
 
-	mySES "github.com/teq-quocbang/store/client/ses"
+	mySES "github.com/teq-quocbang/arrows/client/ses"
 )
 
 type SES struct {

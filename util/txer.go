@@ -6,8 +6,8 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 type KeyContext string

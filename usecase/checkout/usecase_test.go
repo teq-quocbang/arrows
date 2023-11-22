@@ -5,10 +5,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/suite"
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/repository/checkout"
-	"github.com/teq-quocbang/store/repository/product"
-	"github.com/teq-quocbang/store/repository/storage"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/repository/checkout"
+	"github.com/teq-quocbang/arrows/repository/product"
+	"github.com/teq-quocbang/arrows/repository/storage"
 )
 
 type TestSuite struct {

@@ -5,13 +5,13 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/mock"
-	"github.com/teq-quocbang/store/delivery/http/auth"
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/repository/checkout"
-	"github.com/teq-quocbang/store/repository/product"
-	"github.com/teq-quocbang/store/repository/storage"
-	"github.com/teq-quocbang/store/util/token"
+	"github.com/teq-quocbang/arrows/delivery/http/auth"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/repository/checkout"
+	"github.com/teq-quocbang/arrows/repository/product"
+	"github.com/teq-quocbang/arrows/repository/storage"
+	"github.com/teq-quocbang/arrows/util/token"
 )
 
 func (s *TestSuite) TestRemoveFromCart() {

@@ -1,6 +1,6 @@
 package job
 
-import "github.com/teq-quocbang/store/config"
+import "github.com/teq-quocbang/arrows/config"
 
 type IJob interface {
 	Run()

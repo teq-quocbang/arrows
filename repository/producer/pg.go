@@ -3,7 +3,7 @@ package producer
 import (
 	"context"
 
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/model"
 	"gorm.io/gorm"
 )
 

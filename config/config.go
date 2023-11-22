@@ -7,7 +7,7 @@ import (
 	"github.com/kelseyhightower/envconfig"
 	"github.com/pkg/errors"
 
-	"github.com/teq-quocbang/store/codetype"
+	"github.com/teq-quocbang/arrows/codetype"
 )
 
 var config *Config

@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
 
-	"github.com/teq-quocbang/store/config"
+	"github.com/teq-quocbang/arrows/config"
 )
 
 var (

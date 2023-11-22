@@ -6,10 +6,10 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/teq-quocbang/store/presenter"
-	"github.com/teq-quocbang/store/proto"
-	"github.com/teq-quocbang/store/util/contexts"
-	"github.com/teq-quocbang/store/util/myerror"
+	"github.com/teq-quocbang/arrows/presenter"
+	"github.com/teq-quocbang/arrows/proto"
+	"github.com/teq-quocbang/arrows/util/contexts"
+	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
 func (u *UseCase) GetByID(ctx context.Context, id uuid.UUID) (*presenter.PostResponseWrapper, error) {

@@ -5,9 +5,9 @@ import (
 	"reflect"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/codetype"
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/proto"
+	"github.com/teq-quocbang/arrows/codetype"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/proto"
 	"gorm.io/gorm"
 )
 

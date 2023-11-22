@@ -9,12 +9,12 @@ import (
 	"github.com/samber/lo"
 	"github.com/shopspring/decimal"
 
-	"github.com/teq-quocbang/store/model"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
-	"github.com/teq-quocbang/store/util/contexts"
-	"github.com/teq-quocbang/store/util/myerror"
-	"github.com/teq-quocbang/store/util/times"
+	"github.com/teq-quocbang/arrows/model"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
+	"github.com/teq-quocbang/arrows/util/contexts"
+	"github.com/teq-quocbang/arrows/util/myerror"
+	"github.com/teq-quocbang/arrows/util/times"
 )
 
 func (u *UseCase) prepareProductSold(ctx context.Context, req *payload.GetChartRequest) ([]model.CustomerOrder, error) {

@@ -6,10 +6,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/teq-quocbang/store/delivery/http/example"
-	"github.com/teq-quocbang/store/fixture/database"
-	"github.com/teq-quocbang/store/repository"
-	"github.com/teq-quocbang/store/usecase"
+	"github.com/teq-quocbang/arrows/delivery/http/example"
+	"github.com/teq-quocbang/arrows/fixture/database"
+	"github.com/teq-quocbang/arrows/repository"
+	"github.com/teq-quocbang/arrows/usecase"
 )
 
 func TestDelete(t *testing.T) {

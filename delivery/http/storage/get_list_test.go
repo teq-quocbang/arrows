@@ -9,10 +9,10 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
-	"github.com/teq-quocbang/store/fixture/database"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/repository"
-	"github.com/teq-quocbang/store/usecase"
+	"github.com/teq-quocbang/arrows/fixture/database"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/repository"
+	"github.com/teq-quocbang/arrows/usecase"
 )
 
 func TestGetList(t *testing.T) {

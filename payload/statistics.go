@@ -1,6 +1,6 @@
 package payload
 
-import "github.com/teq-quocbang/store/codetype"
+import "github.com/teq-quocbang/arrows/codetype"
 
 type TimeDuration string
 

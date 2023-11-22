@@ -3,8 +3,8 @@ package contexts
 import (
 	"context"
 
-	"github.com/teq-quocbang/store/delivery/http/auth"
-	"github.com/teq-quocbang/store/util/token"
+	"github.com/teq-quocbang/arrows/delivery/http/auth"
+	"github.com/teq-quocbang/arrows/util/token"
 )
 
 func GetUserPrincipleByContext(ctx context.Context) *token.JWTClaimCustom {

@@ -5,8 +5,8 @@ import (
 
 	"git.teqnological.asia/teq-go/teq-pkg/teq"
 	"git.teqnological.asia/teq-go/teq-pkg/teqerror"
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
 )
 
 // Upsert

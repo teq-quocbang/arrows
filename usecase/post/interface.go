@@ -5,8 +5,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/teq-quocbang/store/payload"
-	"github.com/teq-quocbang/store/presenter"
+	"github.com/teq-quocbang/arrows/payload"
+	"github.com/teq-quocbang/arrows/presenter"
 )
 
 type IUseCase interface {

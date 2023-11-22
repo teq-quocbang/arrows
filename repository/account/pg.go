@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/google/uuid"
-	"github.com/teq-quocbang/store/model"
+	"github.com/teq-quocbang/arrows/model"
 )
 
 type pgRepository struct {

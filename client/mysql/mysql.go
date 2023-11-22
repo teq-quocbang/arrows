@@ -10,9 +10,9 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
-	"github.com/teq-quocbang/store/client/logging"
-	"github.com/teq-quocbang/store/config"
-	"github.com/teq-quocbang/store/util"
+	"github.com/teq-quocbang/arrows/client/logging"
+	"github.com/teq-quocbang/arrows/config"
+	"github.com/teq-quocbang/arrows/util"
 )
 
 var db *gorm.DB
