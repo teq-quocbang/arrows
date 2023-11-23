@@ -6,32 +6,31 @@ import (
 	"github.com/google/uuid"
 	"github.com/teq-quocbang/arrows/model"
 	"github.com/teq-quocbang/arrows/payload"
-	"github.com/teq-quocbang/arrows/presenter"
 	"github.com/teq-quocbang/arrows/proto"
 	"github.com/teq-quocbang/arrows/util/contexts"
 	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
-func (u *UseCase) Create(ctx context.Context, req *payload.CreateCommentRequest) (*presenter.PostResponseWrapper, error) {
+func (u *UseCase) Create(ctx context.Context, req *payload.CreateCommentRequest) error {
 	if err := req.Validate(); err != nil {
-		return nil, myerror.ErrCommentInvalidParam(err.Error())
+		return myerror.ErrCommentInvalidParam(err.Error())
 	}
 
 	postID, err := uuid.Parse(req.PostID)
 	if err != nil {
-		return nil, myerror.ErrCommentInvalidParam(err.Error())
+		return myerror.ErrCommentInvalidParam(err.Error())
 	}
 
 	post, err := u.Post.GetByID(ctx, postID)
 	if err != nil {
-		return nil, myerror.ErrPostGet(err)
+		return myerror.ErrPostGet(err)
 	}
 
 	userPrinciple := contexts.GetUserPrincipleByContext(ctx)
 	// check privacy
 	if post.PrivacyMode != proto.Privacy_Public {
 		if post.CreatedBy != userPrinciple.User.ID {
-			return nil, myerror.ErrCommentForbidden("access denied")
+			return myerror.ErrCommentForbidden("access denied")
 		}
 	}
 
@@ -43,17 +42,10 @@ func (u *UseCase) Create(ctx context.Context, req *payload.CreateCommentRequest)
 		CreatedBy: userPrinciple.User.ID,
 	}
 	if err := u.Comment.CreateCommentInPost(ctx, comment, &post); err != nil {
-		return nil, myerror.ErrCommentCreate(err)
+		return myerror.ErrCommentCreate(err)
 	}
 
-	emoji, ok := post.ReactedThePost(userPrinciple.User.ID)
-	return &presenter.PostResponseWrapper{
-		Post: &post,
-		Review: presenter.ReviewInfo{
-			IsReacted:    ok,
-			ReactedState: string(emoji),
-		},
-	}, nil
+	return nil
 }
 
 func (u *UseCase) ReplyComment(ctx context.Context, req *payload.ReplyCommentRequest) error {

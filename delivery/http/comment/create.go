@@ -5,7 +5,6 @@ import (
 	"git.teqnological.asia/teq-go/teq-pkg/teqerror"
 	"github.com/labstack/echo/v4"
 	"github.com/teq-quocbang/arrows/payload"
-	"github.com/teq-quocbang/arrows/presenter"
 )
 
 // Create
@@ -20,21 +19,20 @@ import (
 // @Router /comment [comment] .
 func (r *Route) Create(c echo.Context) error {
 	var (
-		ctx  = &teq.CustomEchoContext{Context: c}
-		req  = &payload.CreateCommentRequest{}
-		resp *presenter.PostResponseWrapper
+		ctx = &teq.CustomEchoContext{Context: c}
+		req = &payload.CreateCommentRequest{}
 	)
 
 	if err := c.Bind(&req); err != nil {
 		return teq.Response.Error(ctx, teqerror.ErrInvalidParams(err))
 	}
 
-	resp, err := r.UseCase.Comment.Create(ctx, req)
+	err := r.UseCase.Comment.Create(ctx, req)
 	if err != nil {
 		return teq.Response.Error(c, err.(teqerror.TeqError))
 	}
 
-	return teq.Response.Success(c, resp)
+	return teq.Response.Success(c, nil)
 }
 
 // Create
