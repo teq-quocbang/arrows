@@ -86,8 +86,11 @@ func (u *UseCase) ReplyComment(ctx context.Context, req *payload.ReplyCommentReq
 
 	// create child comment
 	cComment := &model.Comment{
-		Contents:  req.Content,
-		IsParent:  false,
+		Contents: req.Content,
+		IsParent: false,
+		Information: model.CommentInfo{
+			ParentID: pCommentID,
+		},
 		CreatedBy: userPrinciple.User.ID,
 		PostID:    pComment.PostID,
 	}
