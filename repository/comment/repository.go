@@ -13,5 +13,6 @@ type Repository interface {
 	GetByID(context.Context, uuid.UUID) (model.Comment, error)
 	Update(ctx context.Context, commentID uuid.UUID, contents string) error
 	UpsertEmoji(context.Context, uuid.UUID, *model.React) error
-	Delete(context.Context, uuid.UUID) error
+	DeleteChild(ctx context.Context, cChildID uuid.UUID, cParentID uuid.UUID) error
+	DeleteParent(ctx context.Context, c model.Comment) error
 }

@@ -12,6 +12,7 @@ import (
 
 type CommentInfo struct {
 	ChildCommentIDs []uuid.UUID `json:"child_comment_ids,omitempty"`
+	ParentID        uuid.UUID   `json:"parent_id"`
 	Reacts          React       `json:"reacts,omitempty"`
 }
 

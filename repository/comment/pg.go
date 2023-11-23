@@ -56,8 +56,28 @@ func (r *pgRepository) UpsertEmoji(ctx context.Context, commentID uuid.UUID, rea
 	return r.getDB(ctx).Model(&model.Comment{}).Where("id = ?", commentID).Update("information", gorm.Expr("JSON_MERGE_PATCH(information, ?)", reactByte)).Error
 }
 
-func (r *pgRepository) Delete(ctx context.Context, commentID uuid.UUID) error {
-	return r.getDB(ctx).Where("id = ?", commentID).Delete(&model.Comment{}).Error
+func (r *pgRepository) DeleteChild(ctx context.Context, cChildID uuid.UUID, cParentID uuid.UUID) error {
+	// start tx
+	tx := r.getDB(ctx).Begin()
+
+	// delete child comment
+	if err := tx.Where("id = ?", cChildID).Delete(&model.Comment{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// remove comment ids in parent
+	if err := tx.Model(&model.Comment{}).
+		Where("id = ? and is_parent = true", cParentID).
+		Update("information", gorm.Expr("JSON_REMOVE(information, replace(JSON_SEARCH(information, 'one', ?), '\"', ''))", cChildID)).Error; err != nil {
+		tx.Rollback()
+		return nil
+	}
+
+	// commit
+	tx.Commit()
+
+	return nil
 }
 
 func (r *pgRepository) CreateInParentComment(ctx context.Context, cChild *model.Comment, cParent *model.Comment) error {
@@ -91,4 +111,36 @@ func (r *pgRepository) GetByID(ctx context.Context, commentID uuid.UUID) (model.
 		return model.Comment{}, err
 	}
 	return comment, nil
+}
+
+// DeleteParent is delete at parent comment and then clear it child comment and remove comment id in the post
+func (r *pgRepository) DeleteParent(ctx context.Context, c model.Comment) error {
+	// start tx
+	tx := r.getDB(ctx).Begin()
+
+	// delete parent comment
+	if err := tx.Where("id = ?", c.ID).Delete(&model.Comment{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// delete child comment
+	if err := tx.Where("id in (?) and is_parent=false", c.Information.ChildCommentIDs).Delete(&model.Comment{}).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// remove comment id in post
+	// remove comment_id from list of comment ids in post and update to information
+	if err := tx.Model(&model.Post{}).
+		Where("id = ?", c.PostID).
+		Update("information", gorm.Expr("JSON_REMOVE(information, replace(JSON_SEARCH(information, 'one', ?), '\"', ''))", c.ID)).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// commit
+	tx.Commit()
+
+	return nil
 }
