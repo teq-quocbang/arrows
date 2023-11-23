@@ -14,4 +14,5 @@ func Init(group *echo.Group, useCase *usecase.UseCase) {
 
 	group.POST("", r.Create)
 	group.POST("/reply", r.ReplyComment)
+	group.PUT("", r.Update)
 }

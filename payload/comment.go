@@ -21,3 +21,13 @@ func (r *ReplyCommentRequest) Validate() error {
 	var validate = validator.New()
 	return validate.Struct(r)
 }
+
+type UpdateCommentRequest struct {
+	CommentID string `json:"comment_id" validate:"required"`
+	Content   string `json:"content" validate:"required"`
+}
+
+func (u *UpdateCommentRequest) Validate() error {
+	var validate = validator.New()
+	return validate.Struct(u)
+}

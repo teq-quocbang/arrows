@@ -3,6 +3,7 @@ package model
 import (
 	"database/sql/driver"
 	"encoding/json"
+	"slices"
 	"time"
 
 	"github.com/google/uuid"
@@ -31,6 +32,15 @@ type Comment struct {
 	CreatedBy   uuid.UUID   `json:"created_by"`
 	UpdatedAt   time.Time   `json:"updated_at"`
 	PostID      uuid.UUID   `json:"post_id"`
+}
+
+func (c *Comment) ReactedThePost(userID uuid.UUID) (Emoji, bool) {
+	for emoji, userIDs := range c.Information.Reacts {
+		if slices.Contains[[]uuid.UUID](userIDs, userID) {
+			return emoji, true
+		}
+	}
+	return "", false
 }
 
 func (m *Comment) Scan(src any) error {
