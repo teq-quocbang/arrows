@@ -31,3 +31,13 @@ func (u *UpdateCommentRequest) Validate() error {
 	var validate = validator.New()
 	return validate.Struct(u)
 }
+
+type ReactEmojiRequest struct {
+	CommentID string `json:"comment_id" validate:"required"`
+	Emoji     string `json:"emoji" validate:"required"`
+}
+
+func (r *ReactEmojiRequest) Validate() error {
+	var validate = validator.New()
+	return validate.Struct(r)
+}

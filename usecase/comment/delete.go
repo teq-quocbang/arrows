@@ -50,12 +50,16 @@ func (u *UseCase) Delete(ctx context.Context, id uuid.UUID) error {
 	}
 
 	// parent comment
+	parentID, err := uuid.Parse(comment.Information.Parent.ParentID)
+	if err != nil {
+		return myerror.ErrCommentDelete(err)
+	}
 	if comment.IsParent {
 		if err := u.Comment.DeleteParent(ctx, comment); err != nil {
 			return myerror.ErrCommentDelete(err)
 		}
 	} else { // child comment
-		if err := u.Comment.DeleteChild(ctx, id, comment.Information.ParentID); err != nil {
+		if err := u.Comment.DeleteChild(ctx, id, parentID); err != nil {
 			return myerror.ErrCommentDelete(err)
 		}
 	}

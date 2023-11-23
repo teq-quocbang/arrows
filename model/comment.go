@@ -10,9 +10,13 @@ import (
 	"gorm.io/gorm"
 )
 
+type ParentInfo struct {
+	ParentID string `json:"parent_id,omitempty"` // for omitempty issue
+}
+
 type CommentInfo struct {
 	ChildCommentIDs []uuid.UUID `json:"child_comment_ids,omitempty"`
-	ParentID        uuid.UUID   `json:"parent_id,omitempty"`
+	Parent          ParentInfo  `json:"parent,omitempty"`
 	Reacts          React       `json:"reacts,omitempty"`
 }
 

@@ -14,4 +14,5 @@ type IUseCase interface {
 	ReplyComment(context.Context, *payload.ReplyCommentRequest) error
 	Update(context.Context, *payload.UpdateCommentRequest) (*presenter.CommentResponseWrapper, error)
 	Delete(context.Context, uuid.UUID) error
+	ReactEmoji(ctx context.Context, req *payload.ReactEmojiRequest) (*presenter.CommentResponseWrapper, error)
 }

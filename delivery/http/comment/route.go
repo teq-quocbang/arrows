@@ -16,4 +16,5 @@ func Init(group *echo.Group, useCase *usecase.UseCase) {
 	group.POST("/reply", r.ReplyComment)
 	group.PUT("", r.Update)
 	group.DELETE("/:id", r.Delete)
+	group.PATCH("/react", r.ReactEmoji)
 }
