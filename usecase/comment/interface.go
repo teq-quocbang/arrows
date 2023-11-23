@@ -9,4 +9,5 @@ import (
 
 type IUseCase interface {
 	Create(context.Context, *payload.CreateCommentRequest) (*presenter.PostResponseWrapper, error)
+	ReplyComment(context.Context, *payload.ReplyCommentRequest) error
 }

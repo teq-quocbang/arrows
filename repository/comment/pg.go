@@ -60,5 +60,35 @@ func (r *pgRepository) Delete(ctx context.Context, commentID uuid.UUID) error {
 	return r.getDB(ctx).Where("id = ?", commentID).Delete(&model.Comment{}).Error
 }
 
-func (r *pgRepository) CreateInParentComment(ctx context.Context, parentID uuid.UUID, comment model.Comment) {
+func (r *pgRepository) CreateInParentComment(ctx context.Context, cChild *model.Comment, cParent *model.Comment) error {
+	// start tx
+	tx := r.getDB(ctx).Begin()
+
+	// create child comment
+	if err := tx.Create(&cChild).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	// update comment id to parent comment
+	childCommentByte, err := json.Marshal(model.CommentInfo{ChildCommentIDs: append(cParent.Information.ChildCommentIDs, cChild.ID)})
+	if err != nil {
+		return err
+	}
+	if err := tx.Model(&model.Comment{}).Where("id = ?", cParent.ID).Update("information", gorm.Expr("JSON_MERGE_PATCH(information, ?)", childCommentByte)).Error; err != nil {
+		tx.Rollback()
+		return err
+	}
+
+	tx.Commit()
+
+	return nil
+}
+
+func (r *pgRepository) GetByID(ctx context.Context, commentID uuid.UUID) (model.Comment, error) {
+	comment := model.Comment{}
+	if err := r.getDB(ctx).Where("id = ?", commentID).Take(&comment).Error; err != nil {
+		return model.Comment{}, err
+	}
+	return comment, nil
 }

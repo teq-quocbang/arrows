@@ -76,3 +76,13 @@ func ErrCommentForbidden(param string) teqerror.TeqError {
 		IsSentry:  false,
 	}
 }
+
+func ErrCommentCannotReply(param string) teqerror.TeqError {
+	return teqerror.TeqError{
+		Raw:       nil,
+		HTTPCode:  http.StatusBadRequest,
+		ErrorCode: "80007",
+		Message:   fmt.Sprintf("Can't reply comment: `%s`.", param),
+		IsSentry:  false,
+	}
+}

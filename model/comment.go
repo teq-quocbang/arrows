@@ -10,8 +10,8 @@ import (
 )
 
 type CommentInfo struct {
-	ChildComments []Comment `json:"child_comments"`
-	Reacts        React     `json:"reacts"`
+	ChildCommentIDs []uuid.UUID `json:"child_comment_ids,omitempty"`
+	Reacts          React       `json:"reacts,omitempty"`
 }
 
 func (m *CommentInfo) Scan(src any) error {
