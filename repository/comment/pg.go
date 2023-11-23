@@ -144,3 +144,11 @@ func (r *pgRepository) DeleteParent(ctx context.Context, c model.Comment) error 
 
 	return nil
 }
+
+func (r *pgRepository) GetByIDs(ctx context.Context, IDs []uuid.UUID) ([]model.Comment, error) {
+	comments := []model.Comment{}
+	if err := r.getDB(ctx).Where("id in (?)", IDs).Find(&comments).Error; err != nil {
+		return nil, err
+	}
+	return comments, nil
+}
