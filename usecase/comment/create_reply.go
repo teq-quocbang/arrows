@@ -12,40 +12,48 @@ import (
 	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
-func (u *UseCase) ReplyComment(ctx context.Context, req *payload.ReplyCommentRequest) error {
+func (u *UseCase) validateReplyComment(ctx context.Context, req *payload.ReplyCommentRequest, userID uuid.UUID) (*model.Comment, error) {
 	if err := req.Validate(); err != nil {
-		return myerror.ErrCommentInvalidParam(err.Error())
+		return nil, myerror.ErrCommentInvalidParam(err.Error())
 	}
-
-	userPrinciple := contexts.GetUserPrincipleByContext(ctx)
 
 	pCommentID, err := uuid.Parse(req.ParentCommentID)
 	if err != nil {
-		return myerror.ErrCommentInvalidParam(err.Error())
+		return nil, myerror.ErrCommentInvalidParam(err.Error())
 	}
 
 	// get parent
 	pComment, err := u.Comment.GetByID(ctx, pCommentID)
 	if err != nil {
-		return myerror.ErrCommentGet(err)
+		return nil, myerror.ErrCommentGet(err)
 	}
 
 	// get post
 	post, err := u.Post.GetByID(ctx, pComment.PostID)
 	if err != nil {
-		return myerror.ErrPostGet(err)
+		return nil, myerror.ErrPostGet(err)
 	}
 
 	// check post privacy mode
 	if post.PrivacyMode != proto.Privacy_Public {
-		if userPrinciple.User.ID != post.CreatedBy {
-			return myerror.ErrPostForbidden("access denied")
+		if userID != post.CreatedBy {
+			return nil, myerror.ErrPostForbidden("access denied")
 		}
 	}
 
 	// check whether is parent comment
 	if !pComment.IsParent {
-		return myerror.ErrCommentCannotReply("is not parent comment")
+		return nil, myerror.ErrCommentCannotReply("is not parent comment")
+	}
+
+	return &pComment, nil
+}
+
+func (u *UseCase) ReplyComment(ctx context.Context, req *payload.ReplyCommentRequest) error {
+	userPrinciple := contexts.GetUserPrincipleByContext(ctx)
+	pComment, err := u.validateReplyComment(ctx, req, userPrinciple.User.ID)
+	if err != nil {
+		return err
 	}
 
 	// create child comment
@@ -53,12 +61,12 @@ func (u *UseCase) ReplyComment(ctx context.Context, req *payload.ReplyCommentReq
 		Contents: req.Content,
 		IsParent: false,
 		Information: model.CommentInfo{
-			ParentID: pCommentID,
+			ParentID: pComment.ID,
 		},
 		CreatedBy: userPrinciple.User.ID,
 		PostID:    pComment.PostID,
 	}
-	if err := u.Comment.CreateInParentComment(ctx, cComment, &pComment); err != nil {
+	if err := u.Comment.CreateInParentComment(ctx, cComment, pComment); err != nil {
 		return myerror.ErrCommentCreate(err)
 	}
 
