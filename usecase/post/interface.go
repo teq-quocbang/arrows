@@ -15,4 +15,5 @@ type IUseCase interface {
 	UpsertEmoji(context.Context, *payload.UpsertEmojiRequest) (*presenter.PostResponseWrapper, error)
 	Update(context.Context, *payload.UpdatePostRequest) (*presenter.PostResponseWrapper, error)
 	Delete(context.Context, uuid.UUID) error
+	GetList(context.Context, *payload.GetListPostRequest) (*presenter.ListPostResponseWrapper, error)
 }

@@ -1,10 +1,24 @@
 package presenter
 
-import "github.com/teq-quocbang/arrows/model"
+import (
+	"time"
+
+	"github.com/google/uuid"
+	"github.com/teq-quocbang/arrows/model"
+)
+
+type CommentDetails struct {
+	ID            uuid.UUID        `json:"id"`
+	Content       string           `json:"content"`
+	CreatedAt     time.Time        `json:"created_at"`
+	CreatedBy     string           `json:"created_by"`
+	ChildComments []CommentDetails `json:"child_comments"`
+}
 
 type ReviewInfo struct {
-	IsReacted    bool   `json:"is_reacted"`
-	ReactedState string `json:"reacted_state"`
+	IsReacted    bool             `json:"is_reacted"`
+	ReactedState string           `json:"reacted_state"`
+	Comments     []CommentDetails `json:"comment"`
 }
 
 type PostResponseWrapper struct {
@@ -13,6 +27,6 @@ type PostResponseWrapper struct {
 }
 
 type ListPostResponseWrapper struct {
-	Post []model.Post `json:"Post"`
-	Meta interface{}  `json:"meta"`
+	Posts []PostResponseWrapper `json:"Post"`
+	Meta  interface{}           `json:"meta"`
 }
