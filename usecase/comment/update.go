@@ -5,6 +5,7 @@ import (
 
 	"github.com/google/uuid"
 
+	"github.com/teq-quocbang/arrows/model"
 	"github.com/teq-quocbang/arrows/payload"
 	"github.com/teq-quocbang/arrows/presenter"
 	"github.com/teq-quocbang/arrows/proto"
@@ -12,15 +13,8 @@ import (
 	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
-func (u *UseCase) Update(ctx context.Context, req *payload.UpdateCommentRequest) (*presenter.CommentResponseWrapper, error) {
+func (u *UseCase) validateUpdate(ctx context.Context, req *payload.UpdateCommentRequest, commentID uuid.UUID, userID uuid.UUID) (*model.Comment, error) {
 	if err := req.Validate(); err != nil {
-		return nil, myerror.ErrCommentInvalidParam(err.Error())
-	}
-
-	userPrinciple := contexts.GetUserPrincipleByContext(ctx)
-
-	commentID, err := uuid.Parse(req.CommentID)
-	if err != nil {
 		return nil, myerror.ErrCommentInvalidParam(err.Error())
 	}
 
@@ -38,14 +32,29 @@ func (u *UseCase) Update(ctx context.Context, req *payload.UpdateCommentRequest)
 
 	// check privacy
 	if post.PrivacyMode != proto.Privacy_Public {
-		if userPrinciple.User.ID != post.CreatedBy {
+		if userID != post.CreatedBy {
 			return nil, myerror.ErrPostForbidden("access denied")
 		}
 	}
 
 	// check is owner
-	if comment.CreatedBy != userPrinciple.User.ID {
+	if comment.CreatedBy != userID {
 		return nil, myerror.ErrCommentForbidden("not owner")
+	}
+
+	return &comment, nil
+}
+
+func (u *UseCase) Update(ctx context.Context, req *payload.UpdateCommentRequest) (*presenter.CommentResponseWrapper, error) {
+	userPrinciple := contexts.GetUserPrincipleByContext(ctx)
+	commentID, err := uuid.Parse(req.CommentID)
+	if err != nil {
+		return nil, myerror.ErrCommentInvalidParam(err.Error())
+	}
+
+	comment, err := u.validateUpdate(ctx, req, commentID, userPrinciple.User.ID)
+	if err != nil {
+		return nil, err
 	}
 
 	// let update
@@ -56,7 +65,7 @@ func (u *UseCase) Update(ctx context.Context, req *payload.UpdateCommentRequest)
 	emoji, ok := comment.ReactedThePost(userPrinciple.User.ID)
 	comment.Contents = req.Content
 	return &presenter.CommentResponseWrapper{
-		Comment: &comment,
+		Comment: comment,
 		Review: presenter.ReviewInfo{
 			IsReacted:    ok,
 			ReactedState: string(emoji),
