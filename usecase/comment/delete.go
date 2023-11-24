@@ -5,14 +5,15 @@ import (
 	"reflect"
 
 	"github.com/google/uuid"
+	"github.com/teq-quocbang/arrows/model"
 	"github.com/teq-quocbang/arrows/proto"
 	"github.com/teq-quocbang/arrows/util/contexts"
 	"github.com/teq-quocbang/arrows/util/myerror"
 )
 
-func (u *UseCase) Delete(ctx context.Context, id uuid.UUID) error {
+func (u *UseCase) validateDelete(ctx context.Context, id uuid.UUID) (model.Comment, error) {
 	if reflect.DeepEqual(id, uuid.UUID{}) {
-		return myerror.ErrCommentInvalidParam("missing id")
+		return model.Comment{}, myerror.ErrCommentInvalidParam("missing id")
 	}
 
 	userPrinciple := contexts.GetUserPrincipleByContext(ctx)
@@ -20,23 +21,32 @@ func (u *UseCase) Delete(ctx context.Context, id uuid.UUID) error {
 	// get comment
 	comment, err := u.Comment.GetByID(ctx, id)
 	if err != nil {
-		return myerror.ErrCommentGet(err)
+		return model.Comment{}, myerror.ErrCommentGet(err)
 	}
 
 	// get post
 	post, err := u.Post.GetByID(ctx, comment.PostID)
 	if err != nil {
-		return myerror.ErrPostGet(err)
+		return model.Comment{}, myerror.ErrPostGet(err)
 	}
 
 	// check privacy
 	if post.PrivacyMode != proto.Privacy_Public {
-		return myerror.ErrPostForbidden("access denied")
+		return model.Comment{}, myerror.ErrPostForbidden("access denied")
 	}
 
 	// check whether is owner
 	if comment.CreatedBy != userPrinciple.User.ID {
-		return myerror.ErrCommentForbidden("not owner")
+		return model.Comment{}, myerror.ErrCommentForbidden("not owner")
+	}
+
+	return comment, nil
+}
+
+func (u *UseCase) Delete(ctx context.Context, id uuid.UUID) error {
+	comment, err := u.validateDelete(ctx, id)
+	if err != nil {
+		return err
 	}
 
 	// parent comment
