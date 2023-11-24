@@ -5,6 +5,7 @@ import (
 	"github.com/teq-quocbang/arrows/repository"
 	"github.com/teq-quocbang/arrows/usecase/account"
 	"github.com/teq-quocbang/arrows/usecase/checkout"
+	"github.com/teq-quocbang/arrows/usecase/comment"
 	"github.com/teq-quocbang/arrows/usecase/example"
 	"github.com/teq-quocbang/arrows/usecase/grpc"
 	"github.com/teq-quocbang/arrows/usecase/post"
@@ -26,6 +27,7 @@ type UseCase struct {
 	Checkout   checkout.IUseCase
 	Statistics statistics.IUseCase
 	Post       post.IUseCase
+	Comment    comment.IUseCase
 
 	SES mySES.ISES
 	S3  myS3.IS3
@@ -47,6 +49,7 @@ func New(repo *repository.Repository, cache cache.ICache) *UseCase {
 		Checkout:   checkout.New(repo, ses),
 		Statistics: statistics.New(repo, ses),
 		Post:       post.New(repo, ses),
+		Comment:    comment.New(repo, nil),
 		SES:        ses,
 		S3:         s3,
 	}

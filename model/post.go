@@ -17,8 +17,9 @@ type Emoji string
 type React map[Emoji][]uuid.UUID
 
 type PostInfo struct {
-	CommentIDs []uuid.UUID `json:"comment_ids"`
-	Reacts     React       `json:"reacts"`
+	// omitempty is important for JSON_MERGE_PATCH
+	CommentIDs []uuid.UUID `json:"comment_ids,omitempty"`
+	Reacts     React       `json:"reacts,omitempty"`
 }
 
 type Post struct {

@@ -13,6 +13,7 @@ import (
 	"github.com/teq-quocbang/arrows/delivery/http/account"
 	"github.com/teq-quocbang/arrows/delivery/http/auth"
 	"github.com/teq-quocbang/arrows/delivery/http/checkout"
+	"github.com/teq-quocbang/arrows/delivery/http/comment"
 	"github.com/teq-quocbang/arrows/delivery/http/example"
 	"github.com/teq-quocbang/arrows/delivery/http/healthcheck"
 	"github.com/teq-quocbang/arrows/delivery/http/post"
@@ -73,6 +74,7 @@ func NewHTTPHandler(useCase *usecase.UseCase) *echo.Echo {
 
 	// arrows
 	post.Init(api.Group("/post", auth.Auth), useCase)
+	comment.Init(api.Group("/comment", auth.Auth), useCase)
 
 	return e
 }
