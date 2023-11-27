@@ -61,7 +61,9 @@ func (u *UseCase) ReplyComment(ctx context.Context, req *payload.ReplyCommentReq
 		Contents: req.Content,
 		IsParent: false,
 		Information: model.CommentInfo{
-			ParentID: pComment.ID,
+			Parent: model.ParentInfo{
+				ParentID: pComment.ID.String(),
+			},
 		},
 		CreatedBy: userPrinciple.User.ID,
 		PostID:    pComment.PostID,
