@@ -86,3 +86,13 @@ func ErrCommentCannotReply(param string) teqerror.TeqError {
 		IsSentry:  false,
 	}
 }
+
+func ErrCommentUpsert(err error) teqerror.TeqError {
+	return teqerror.TeqError{
+		Raw:       err,
+		HTTPCode:  http.StatusInternalServerError,
+		ErrorCode: "80008",
+		Message:   "Failed to upsert comment.",
+		IsSentry:  true,
+	}
+}
