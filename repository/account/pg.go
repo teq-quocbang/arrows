@@ -47,3 +47,11 @@ func (p *pgRepository) GetList(ctx context.Context) ([]model.Account, error) {
 	err := p.getDB(ctx).Find(&accounts).Error
 	return accounts, err
 }
+
+func (p *pgRepository) GetByID(ctx context.Context, id uuid.UUID) (model.Account, error) {
+	account := model.Account{}
+	if err := p.getDB(ctx).Where("id = ?", id).Take(&account).Error; err != nil {
+		return model.Account{}, err
+	}
+	return account, nil
+}

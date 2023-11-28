@@ -49,7 +49,7 @@ func (r *pgRepository) GetList(ctx context.Context, accountID uuid.UUID, order [
 	)
 
 	if !reflect.DeepEqual(accountID, uuid.UUID{}) {
-		db = db.Where("create_by = ?", accountID)
+		db = db.Where("created_by = ?", accountID)
 	}
 
 	for i := range order {

@@ -1,6 +1,9 @@
 package payload
 
-import "github.com/go-playground/validator/v10"
+import (
+	"github.com/go-playground/validator/v10"
+	"github.com/teq-quocbang/arrows/codetype"
+)
 
 type CreatePostRequest struct {
 	Content     string `json:"content" validate:"required"`
@@ -35,4 +38,10 @@ func (p *UpdatePostRequest) IsNoUpdate() bool {
 func (p *UpdatePostRequest) Validate() error {
 	var validate = validator.New()
 	return validate.Struct(p)
+}
+
+type GetListPostRequest struct {
+	codetype.Paginator
+	SortBy  codetype.SortType
+	OrderBy string `json:"order_by,omitempty" query:"order_by"`
 }

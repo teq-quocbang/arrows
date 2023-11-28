@@ -189,6 +189,59 @@ func (_c *MockRepository_GetAccountByUsername_Call) RunAndReturn(run func(contex
 	return _c
 }
 
+// GetByID provides a mock function with given fields: _a0, _a1
+func (_m *MockRepository) GetByID(_a0 context.Context, _a1 uuid.UUID) (model.Account, error) {
+	ret := _m.Called(_a0, _a1)
+
+	var r0 model.Account
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, uuid.UUID) (model.Account, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, uuid.UUID) model.Account); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(model.Account)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, uuid.UUID) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// MockRepository_GetByID_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetByID'
+type MockRepository_GetByID_Call struct {
+	*mock.Call
+}
+
+// GetByID is a helper method to define mock.On call
+//   - _a0 context.Context
+//   - _a1 uuid.UUID
+func (_e *MockRepository_Expecter) GetByID(_a0 interface{}, _a1 interface{}) *MockRepository_GetByID_Call {
+	return &MockRepository_GetByID_Call{Call: _e.mock.On("GetByID", _a0, _a1)}
+}
+
+func (_c *MockRepository_GetByID_Call) Run(run func(_a0 context.Context, _a1 uuid.UUID)) *MockRepository_GetByID_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(context.Context), args[1].(uuid.UUID))
+	})
+	return _c
+}
+
+func (_c *MockRepository_GetByID_Call) Return(_a0 model.Account, _a1 error) *MockRepository_GetByID_Call {
+	_c.Call.Return(_a0, _a1)
+	return _c
+}
+
+func (_c *MockRepository_GetByID_Call) RunAndReturn(run func(context.Context, uuid.UUID) (model.Account, error)) *MockRepository_GetByID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetList provides a mock function with given fields: _a0
 func (_m *MockRepository) GetList(_a0 context.Context) ([]model.Account, error) {
 	ret := _m.Called(_a0)
