@@ -32,11 +32,16 @@ func (u *UseCase) GetByID(ctx context.Context, id uuid.UUID) (*presenter.PostRes
 	}
 
 	emoji, ok := post.ReactedThePost(userPrinciple.User.ID)
+	commentDetails, err := u.parseComment(ctx, post.Information.CommentIDs)
+	if err != nil {
+		return nil, err
+	}
 	return &presenter.PostResponseWrapper{
 		Post: &post,
 		Review: presenter.ReviewInfo{
 			IsReacted:    ok,
 			ReactedState: string(emoji),
+			Comments:     commentDetails,
 		},
 	}, nil
 }
